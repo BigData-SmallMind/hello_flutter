@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'frdy_theme.dart';
+
+import '../fooderlich_theme.dart';
 import 'circle_image.dart';
 
 class AuthorCard extends StatefulWidget {
-  const AuthorCard(
-      {Key? key,
-      required this.authorName,
-      required this.title,
-      required this.imageProvider})
-      : super(key: key);
-
   final String authorName;
   final String title;
-  final ImageProvider imageProvider;
+  final ImageProvider? imageProvider;
+
+  const AuthorCard({
+    Key? key,
+    required this.authorName,
+    required this.title,
+    this.imageProvider,
+  }) : super(key: key);
 
   @override
-  State<AuthorCard> createState() => _AuthorCardState();
+  _AuthorCardState createState() => _AuthorCardState();
 }
 
 class _AuthorCardState extends State<AuthorCard> {
@@ -34,13 +35,18 @@ class _AuthorCardState extends State<AuthorCard> {
                 imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.authorName,
-                      style: FrdyTheme.lightTextTheme.headline2),
-                  Text(widget.title, style: FrdyTheme.lightTextTheme.headline3),
+                  Text(
+                    widget.authorName,
+                    style: FooderlichTheme.lightTextTheme.headline2,
+                  ),
+                  Text(
+                    widget.title,
+                    style: FooderlichTheme.lightTextTheme.headline3,
+                  )
                 ],
               ),
             ],
@@ -54,7 +60,7 @@ class _AuthorCardState extends State<AuthorCard> {
                 _isFavorited = !_isFavorited;
               });
             },
-          )
+          ),
         ],
       ),
     );

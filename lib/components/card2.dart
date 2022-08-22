@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/frdy_theme.dart';
+
+import '../fooderlich_theme.dart';
+import '../models/models.dart';
 import 'author_card.dart';
 
-class CardTwo extends StatelessWidget {
-  const CardTwo({Key? key}) : super(key: key);
+class Card2 extends StatelessWidget {
+  final ExploreRecipe recipe;
+
+  const Card2({
+    Key? key,
+    required this.recipe,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
+    return Center(
       child: Container(
-        padding: const EdgeInsets.all(15),
-        constraints: const BoxConstraints.expand(width: 350, height: 550),
-        decoration: const BoxDecoration(
+        constraints: const BoxConstraints.expand(
+          width: 350,
+          height: 450,
+        ),
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/card-two-bg.jpeg'),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Column(
           children: [
-            const AuthorCard(
-              imageProvider: AssetImage('assets/avatar.jpeg'),
-              authorName: 'Mohamed Farid',
-              title: 'Baker & Spatzle Master',
+            AuthorCard(
+              authorName: recipe.authorName,
+              title: recipe.role,
+              imageProvider: AssetImage(recipe.profileImage),
             ),
             Expanded(
               child: Stack(
@@ -35,8 +41,8 @@ class CardTwo extends StatelessWidget {
                     bottom: 16,
                     right: 16,
                     child: Text(
-                      'Recipee',
-                      style: FrdyTheme.lightTextTheme.headline1,
+                      recipe.title,
+                      style: FooderlichTheme.lightTextTheme.headline1,
                     ),
                   ),
                   Positioned(
@@ -45,8 +51,8 @@ class CardTwo extends StatelessWidget {
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
-                        'Breads',
-                        style: FrdyTheme.lightTextTheme.headline1,
+                        recipe.subtitle,
+                        style: FooderlichTheme.lightTextTheme.headline1,
                       ),
                     ),
                   ),

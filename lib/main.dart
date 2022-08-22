@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'frdy_theme.dart';
+
+import 'fooderlich_theme.dart';
 import 'home.dart';
 
 void main() {
-  runApp(Frdy());
+  runApp(const Fooderlich());
 }
 
-class Frdy extends StatelessWidget {
-  Frdy({Key? key}) : super(key: key);
-
-  final theme = FrdyTheme.dark();
-
+class Fooderlich extends StatelessWidget {
+  const Fooderlich({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, title: 'Frdy', home: const Home());
+    final theme = FooderlichTheme.dark();
+    return MaterialApp(
+      theme: theme,
+      title: 'Fooderlich',
+      home: const Home(),
+    );
   }
 }
